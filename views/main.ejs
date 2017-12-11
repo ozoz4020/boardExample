@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<html>
+  <head>
+    <title>게시판</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+      <table class="type07">
+      <thead>
+        <tr>
+            <th scope="cols" width="10%">선택</th>
+            <th scope="cols" width="20%">타이틀</th>
+            <th scope="cols" width="50%">내용</th>
+            <th scope="cols" width="20%">작성자</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(boards)
+            for(let board of boards){
+        %>
+        <tr>
+            <td><input type="radio" name="group" value=<%= board.id %>></td>
+            <th scope="row"><%= board.title %></th>
+            <td><%= board.content %></td>
+            <td><%= board.writer %></td>
+        </tr>
+        <%  }%>
+      </tbody>
+      </table>
+      <input type="button" style="float:right;" value="게시글 삭제" onclick="letsDelete();">
+      <input type="button" style="float:right;" value="게시글 수정" onclick="letsUpdate();">
+      <input type="button" style="float:right;" value="게시글 작성" onclick="letsPost();">
+
+  </body>
+  <script>
+    function letsPost(){
+      alert("작성하러 이동해볼까!");
+      location.href='/post';
+    }
+
+    function letsDelete(){
+      var checked_radio = $('input:radio[name=group]:checked').val();
+      alert(checked_radio);
+      location.href='/delete/'+checked_radio;
+
+    }
+
+    function letsUpdate(){
+      var checked_radio = $('input:radio[name=group]:checked').val();
+      alert(checked_radio);
+      location.href='/update/'+checked_radio;
+    }
+  </script>
+</html>

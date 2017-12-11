@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>게시글 수정</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+      <form action="/boardUpdate/<%=board.id%>" method="POST">
+        <table class="type07">
+        <tbody>
+          <% if(board){
+          %>
+          <tr>
+              <th scope="row">제목</th>
+              <td><input type="text" name="inputTitle" value=<%=board.title%>></td>
+          </tr>
+          <tr>
+              <th scope="row">내용</th>
+              <td><input type="text" name="inputContent" value=<%=board.content%>></td>
+          </tr>
+          <tr>
+              <th scope="row">글쓴이</th>
+              <td><input type="text" name="inputWriter" value=<%=board.writer%>></td>
+          </tr>
+          <% } %>
+        </tbody>
+        </table>
+        <input type="submit" value="수정" style="float:right;"/>
+      </form>
+  </body>
+</html>
